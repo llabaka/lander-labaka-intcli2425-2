@@ -21,7 +21,7 @@ export function listIngredients(potion: Potion): string[] {
 //Encuentra todas las pociones que otorgan un efecto secundario especifico
 export function findPotionByEffect(potions: Potion[], effect: Effect): Potion[] {
 
-    return potions.filter(potion => potion.effects.secondary?.map(secondaryEffects => secondaryEffects.attribute === effect.attribute))
+    return potions.filter(potion => potion.effects.secondary?.find(secondaryEffects => secondaryEffects.attribute === effect.attribute))
 }
 
 //Devuelve el tiempo total necesario para crear una lista de pociones en minutos

@@ -68,7 +68,7 @@ describe('Recibe las pociones, un effecto y devuelve un array de pociones', () =
 
         // Arrange
         const potion1 = potions[1];
-        const potion2 = potions[4];
+        const potion2 = potions[2];
 
         const potionsArray = [potion1, potion2];
 
@@ -76,11 +76,11 @@ describe('Recibe las pociones, un effecto y devuelve un array de pociones', () =
 
         //Act
 
-        // Filtrara las pociones que tengan ese efecto en este caso 2
+        // Filtrara las pociones que tengan ese efecto en este caso 1
         const filteredPotions = findPotionByEffect(potionsArray, effect);
 
         //Assert
-        expect(filteredPotions.length).toBe(2);
+        expect(filteredPotions.length).toBe(1);
 
     });
 });
@@ -118,7 +118,7 @@ describe('Recibe las pociones, y devuelve un valor numerico', () => {
 
         //Act
 
-        // Calculara el tiempo total de craftin
+        // Calculara el tiempo average de craftin
         const totalTime = calculateAverageCraftingCost(potionsArray);
 
         //Assert
@@ -139,11 +139,6 @@ describe('Recibe las pociones, y devuelve una pocion', () => {
 
         const ingredient = potion1.ingredients[0];
 
-        console.log("ingredient name");
-        console.log(ingredient.name);
-        
-        
-    
         //Act
 
         // Calculara el tiempo total de craftin
