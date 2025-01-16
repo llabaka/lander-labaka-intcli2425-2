@@ -1,33 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import { Potion } from './types/Potion'
+import { potions } from './data/data'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [potionsData, setPotionsData] = useState<Potion[] | []>([]);
+  const [potionModalVisible, setPotionModalVisible] = useState(false);
+
+  useEffect(() => {
+    setPotionsData(potions)
+  }, [])
+
+
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className="text-3xl font-bold underline">Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+
+      {/* <h1 className="text-3xl font-bold underline border">Vite + React</h1> */}
+      <div className="border minmum-height">
+        <button onClick={() => setPotionModalVisible((true))}>
+        <img src={potions.map(potion => potion.image)} alt="Potion Image" />;
+          
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <button onClick={() => setPotionModalVisible((true))}>
+
+        </button>
+        <button onClick={() => setPotionModalVisible((true))}>
+
+        </button>
+        <button onClick={() => setPotionModalVisible((true))}>
+
+        </button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
