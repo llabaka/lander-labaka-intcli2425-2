@@ -1,6 +1,6 @@
 import { potions } from "../data/data";
 import '@testing-library/jest-dom'
-import { filterByLevelRequireMent, getPotionsByRarity, listIngredients } from "../helpers/potionHelpers";
+import { filterByLevelRequireMent, findPotionByEffect, getPotionsByRarity, listIngredients } from "../helpers/potionHelpers";
 
 // TEST 1
 describe('Recibe las pociones, el level y devuelve un array de pociones', () => {
@@ -58,6 +58,29 @@ describe('Recibe una pocion y devuelve un array de ingredientes', () => {
 
         //Assert
         expect(filteredIngredients.length).toBe(3);
+    
+    });
+});
+
+// TEST 4
+describe('Recibe las pociones, un effecto y devuelve un array de pociones', () => {
+    it('Encuentra todas las pociones que otorgan un efecto secundario especifico', () => {
+
+        // Arrange
+        const potion1 = potions[1];
+        const potion2 = potions[4];
+
+        const ingredientsArray = [potion1, potion2];
+
+        const effect = potion1.effects.secondary![0];
+        
+        //Act
+
+        // Filtrara las pociones que tengan ese efecto en este caso 2
+        const filteredPotions = findPotionByEffect(ingredientsArray, effect);
+
+        //Assert
+        expect(filteredPotions.length).toBe(2);
     
     });
 });
