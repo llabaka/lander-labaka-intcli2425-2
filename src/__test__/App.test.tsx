@@ -19,6 +19,7 @@ describe('Recibe las pociones, el level y devuelve un array de pociones', () => 
 
         //Assert
         expect(filteredPotions.length).toBe(1);
+        expect(filteredPotions.map(filteredPotion => filteredPotion.name)).toContain('Elixir of Eternal Flame');
 
     });
 });
@@ -40,7 +41,7 @@ describe('Recibe las pociones, la rareza y devuelve un array de pociones', () =>
 
         //Assert
         expect(filteredPotions.length).toBe(1);
-
+        expect(filteredPotions.map(filteredPotion => filteredPotion.rarity)).toContain('epic');
     });
 });
 
@@ -58,7 +59,9 @@ describe('Recibe una pocion y devuelve un array de ingredientes', () => {
 
         //Assert
         expect(filteredIngredients.length).toBe(3);
-
+        expect(filteredIngredients).toContain("Phoenix Feather");
+        expect(filteredIngredients).toContain("Molten Ember");
+        expect(filteredIngredients).toContain("Flameflower Extract");
     });
 });
 
@@ -81,6 +84,7 @@ describe('Recibe las pociones, un effecto y devuelve un array de pociones', () =
 
         //Assert
         expect(filteredPotions.length).toBe(1);
+        expect(filteredPotions.map(filteredPotion => filteredPotion.name)).toContain('Essence of Frostbound Will');
 
     });
 });
@@ -147,6 +151,7 @@ describe('Recibe las pociones, y devuelve una pocion', () => {
 
         //Assert
         expect(filteredPotions.length).toBe(2);
-
+        expect(filteredPotions.map(filteredPotion => filteredPotion.name)).toContain("Elixir of Eternal Flame");
+        expect(filteredPotions.map(filteredPotion => filteredPotion.name)).toContain("Essence of Frostbound Will");
     });
 });
