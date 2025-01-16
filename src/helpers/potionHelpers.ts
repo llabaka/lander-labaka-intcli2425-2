@@ -58,7 +58,6 @@ export function calculateAverageCraftingCost(potions: Potion[]): number {
 
 // Encuentra todas las pociones que contienen un ingrediente especifico
 export function findPotionWithIngredient(potions: Potion[], ingredient: Ingredients): Potion[] {
-    let potionIngredients = potions.filter(potion => potion.ingredients)
 
-    return potionIngredients.filter(potionIngredient => potionIngredient.name === ingredient.name);
+    return potions.filter(potion => potion.ingredients.map(potionIngredient => potionIngredient.name === ingredient.name))
 }

@@ -1,6 +1,6 @@
 import { potions } from "../data/data";
 import '@testing-library/jest-dom'
-import { calculateAverageCraftingCost, calculateCraftintTime, filterByLevelRequireMent, findPotionByEffect, getPotionsByRarity, listIngredients } from "../helpers/potionHelpers";
+import { calculateAverageCraftingCost, calculateCraftintTime, filterByLevelRequireMent, findPotionByEffect, findPotionWithIngredient, getPotionsByRarity, listIngredients } from "../helpers/potionHelpers";
 
 // TEST 1
 describe('Recibe las pociones, el level y devuelve un array de pociones', () => {
@@ -10,7 +10,7 @@ describe('Recibe las pociones, el level y devuelve un array de pociones', () => 
         const potion1 = potions[0];
         const potion2 = potions[1];
 
-        let potionsArray = [potion1, potion2];
+        const potionsArray = [potion1, potion2];
 
         //Act
 
@@ -19,7 +19,7 @@ describe('Recibe las pociones, el level y devuelve un array de pociones', () => 
 
         //Assert
         expect(filteredPotions.length).toBe(1);
-    
+
     });
 });
 
@@ -31,7 +31,7 @@ describe('Recibe las pociones, la rareza y devuelve un array de pociones', () =>
         const potion1 = potions[0];
         const potion2 = potions[5];
 
-        let potionsArray = [potion1, potion2];
+        const potionsArray = [potion1, potion2];
 
         //Act
 
@@ -40,7 +40,7 @@ describe('Recibe las pociones, la rareza y devuelve un array de pociones', () =>
 
         //Assert
         expect(filteredPotions.length).toBe(1);
-    
+
     });
 });
 
@@ -58,7 +58,7 @@ describe('Recibe una pocion y devuelve un array de ingredientes', () => {
 
         //Assert
         expect(filteredIngredients.length).toBe(3);
-    
+
     });
 });
 
@@ -70,18 +70,18 @@ describe('Recibe las pociones, un effecto y devuelve un array de pociones', () =
         const potion1 = potions[1];
         const potion2 = potions[4];
 
-        const ingredientsArray = [potion1, potion2];
+        const potionsArray = [potion1, potion2];
 
         const effect = potion1.effects.secondary![0];
-        
+
         //Act
 
         // Filtrara las pociones que tengan ese efecto en este caso 2
-        const filteredPotions = findPotionByEffect(ingredientsArray, effect);
+        const filteredPotions = findPotionByEffect(potionsArray, effect);
 
         //Assert
         expect(filteredPotions.length).toBe(2);
-    
+
     });
 });
 
@@ -93,16 +93,16 @@ describe('Recibe las pociones, y devuelve un valor numerico', () => {
         const potion1 = potions[0];
         const potion2 = potions[1];
 
-        const ingredientsArray = [potion1, potion2];
-        
+        const potionsArray = [potion1, potion2];
+
         //Act
 
         // Calculara el tiempo total de craftin
-        const totalTime = calculateCraftintTime(ingredientsArray);
+        const totalTime = calculateCraftintTime(potionsArray);
 
         //Assert
         expect(totalTime).toBe(105);
-    
+
     });
 });
 
@@ -114,15 +114,44 @@ describe('Recibe las pociones, y devuelve un valor numerico', () => {
         const potion1 = potions[0];
         const potion2 = potions[1];
 
-        const ingredientsArray = [potion1, potion2];
-        
+        const potionsArray = [potion1, potion2];
+
         //Act
 
         // Calculara el tiempo total de craftin
-        const totalTime = calculateAverageCraftingCost(ingredientsArray);
+        const totalTime = calculateAverageCraftingCost(potionsArray);
 
         //Assert
         expect(totalTime).toBe(52);
+
+    });
+});
+
+// TEST 7
+describe('Recibe las pociones, y devuelve una pocion', () => {
+    it('Encuentra todas las pociones que contienen un ingrediente especifico', () => {
+
+        // Arrange
+        const potion1 = potions[0];
+        const potion2 = potions[1];
+
+        const potionsArray = [potion1, potion2];
+
+        const ingredient = potion1.ingredients[0];
+
+        console.log("ingredient name");
+        console.log(ingredient.name);
+        
+        
     
+        //Act
+
+        // Calculara el tiempo total de craftin
+        const filteredPotions = findPotionWithIngredient(potionsArray, ingredient);
+
+
+        //Assert
+        expect(filteredPotions.length).toBe(2);
+
     });
 });
