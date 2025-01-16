@@ -45,13 +45,13 @@ export function calculateAverageCraftingCost(potions: Potion[]): number {
 
     let potionsQuantity = potions.length;
 
-    let averageTime = totalTime / potionsQuantity;
-
     let potionsTime = potions.map(potion => potion.crafting.time.amount);
 
     for (let i = 0; i < potionsTime.length; i++) {
         totalTime += potionsTime[i];
     }
+
+    let averageTime = Math.floor(totalTime / potionsQuantity);
 
     return averageTime;
 }

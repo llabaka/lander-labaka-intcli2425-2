@@ -1,6 +1,6 @@
 import { potions } from "../data/data";
 import '@testing-library/jest-dom'
-import { calculateCraftintTime, filterByLevelRequireMent, findPotionByEffect, getPotionsByRarity, listIngredients } from "../helpers/potionHelpers";
+import { calculateAverageCraftingCost, calculateCraftintTime, filterByLevelRequireMent, findPotionByEffect, getPotionsByRarity, listIngredients } from "../helpers/potionHelpers";
 
 // TEST 1
 describe('Recibe las pociones, el level y devuelve un array de pociones', () => {
@@ -102,6 +102,27 @@ describe('Recibe las pociones, y devuelve un valor numerico', () => {
 
         //Assert
         expect(totalTime).toBe(105);
+    
+    });
+});
+
+// TEST 6
+describe('Recibe las pociones, y devuelve un valor numerico', () => {
+    it('Calcula el tiempo promedio de creacion de un conjunto de pociones', () => {
+
+        // Arrange
+        const potion1 = potions[0];
+        const potion2 = potions[1];
+
+        const ingredientsArray = [potion1, potion2];
+        
+        //Act
+
+        // Calculara el tiempo total de craftin
+        const totalTime = calculateAverageCraftingCost(ingredientsArray);
+
+        //Assert
+        expect(totalTime).toBe(52);
     
     });
 });
