@@ -14,7 +14,8 @@ export function getPotionsByRarity(potions: Potion[], rarity: string): Potion[] 
 
 //Devuelve una lista de nombres de ingredientes de una pocion especifica
 export function listIngredients(potion: Potion): string[] {
-    return Object.values(potion.name)
+
+    return potion.ingredients.map(ingredient => ingredient.name)
 }
 
 //Encuentra todas las pociones que otorgan un efecto secundario especifico

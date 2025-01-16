@@ -1,6 +1,6 @@
 import { potions } from "../data/data";
 import '@testing-library/jest-dom'
-import { filterByLevelRequireMent, getPotionsByRarity } from "../helpers/potionHelpers";
+import { filterByLevelRequireMent, getPotionsByRarity, listIngredients } from "../helpers/potionHelpers";
 
 // TEST 1
 describe('Recibe las pociones, el level y devuelve un array de pociones', () => {
@@ -11,8 +11,6 @@ describe('Recibe las pociones, el level y devuelve un array de pociones', () => 
         const potion2 = potions[1];
 
         let potionsArray = [potion1, potion2];
-
-        console.log(potionsArray);
 
         //Act
 
@@ -42,6 +40,24 @@ describe('Recibe las pociones, la rareza y devuelve un array de pociones', () =>
 
         //Assert
         expect(filteredPotions.length).toBe(1);
+    
+    });
+});
+
+// TEST 3
+describe('Recibe una pocion y devuelve un array de ingredientes', () => {
+    it('Devuelve una lista de nombres de ingredientes de una pocion especifica', () => {
+
+        // Arrange
+        const potion1 = potions[0];
+
+        //Act
+
+        // Filtrara los nombres de los ingredientes
+        const filteredIngredients = listIngredients(potion1);
+
+        //Assert
+        expect(filteredIngredients.length).toBe(3);
     
     });
 });
