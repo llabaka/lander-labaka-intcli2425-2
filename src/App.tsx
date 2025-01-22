@@ -34,7 +34,7 @@ function App() {
     }
 
     if (effectFilter) {
-      filteredPotions = findPotionByEffect(potions, effectFilter);;
+      filteredPotions = findPotionByEffect(potions, effectFilter);
     }
 
     setShowingPotions(filteredPotions);

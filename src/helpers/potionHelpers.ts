@@ -3,7 +3,7 @@ import { Potion } from "../types/Potion";
 
 //Filtrar las pociones que requieren un nivel de uso menor o igual al especificado
 export function filterByLevelRequireMent(potions: Potion[], level: number): Potion[] {
-    return potions.filter(potion => potion.usage.restrictions.levelRequirement >= level);
+    return potions.filter(potion => potion.usage.restrictions.levelRequirement <= level);
 }
 
 //Devuelve todas las pociones que tienen una rareza especifica
@@ -59,4 +59,51 @@ export function calculateAverageCraftingCost(potions: Potion[]): number {
 export function findPotionWithIngredient(potions: Potion[], ingredient: Ingredients): Potion[] {
 
     return potions.filter(potion => potion.ingredients.map(potionIngredient => potionIngredient.name === ingredient.name))
+}
+
+// Devuelve las pociones que puedan ser utilizadas por una clase especifica de personaje
+export function findSpecificPotion(potions: Potion[], characterClass: string): Potion[] {
+
+    return potions.filter(potion => potion.usage.restrictions.classRestrictions.includes(characterClass))
+}
+
+// Devuelve las pociones que requieren un ingrediente especifico en una cantidad mayor o igual a un valor dado
+export function findPotionWithIngredientQuantity(potions: Potion[], ingredient: Ingredients, quantity: number): Potion[] {
+    return potions.filter(potion => potion.ingredients.find(potionIngredient => potionIngredient.name === ingredient.name && potionIngredient.quantity >= quantity))
+}
+
+export function findPotionByCreateTime(potions: Potion[], maxTime: number): Potion[] {
+    return potions.filter(potion => potion.crafting.time.amount <= maxTime)
+}
+
+export function findPotionByQuestReward(potions: Potion[], quest_reward: boolean): Potion[] {
+    return potions.filter(potion => potion.meta.availability.quest_reward === quest_reward);
+}
+
+export function findPotionByPrimaryEffectValue(potions: Potion[], primaryEffectValue: number): Potion[] {
+    return potions.filter(potion => potion.effects.primary.value >= primaryEffectValue);
+}
+
+export function findPotionWith2SecondaryEffects(potions: Potion[], minimumDuration: number, timeUnity: string): Potion[] {
+    return potions.filter(potion => {
+        const validSecondaryEffects = potion.effects.secondary?.filter(secondaryEffect => secondaryEffect.duration.amount >= minimumDuration && secondaryEffect.duration.unit === timeUnity)
+
+        return validSecondaryEffects!.length >= 2;
+    })
+}
+
+export function findPotionOfSpecificUbication(potions: Potion[], location: string): Potion[] {
+    return potions.filter(potion => potion.ingredients.some(ingredient => ingredient.origin.location === location))
+}
+
+export function findPotionOfSpecificIngredients(potions: Potion[], ingredients: Ingredients[]): Potion[] {
+    return potions.filter(potion => ingredients.every(ingredient => potion.ingredients.some(potionIngredient => potionIngredient.name === ingredient.name)))
+}
+
+export function findPotionByPrimaryValue(potions: Potion[], range: { min: number, max: number }): Potion[] {
+    return potions.filter(potion => potion.effects.primary.value >= range.min && potion.effects.primary.value <= range.max);
+}
+
+export function findPotionWithStationAndValue(potions: Potion[], station: string, minLevel: number): Potion[] {
+    return potions.filter(potion => potion.crafting.station === station && potion.crafting.required_level >= minLevel)
 }
