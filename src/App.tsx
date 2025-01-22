@@ -64,7 +64,7 @@ function App() {
       />
 
       <Potions
-        potionsData={showingPotions}
+        potions={showingPotions}
         openModal={openModal}
       />
 

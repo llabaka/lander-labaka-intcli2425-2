@@ -4,14 +4,14 @@ import { Potion } from "../types/Potion";
 
 
 interface PotionsProps {
-    potionsData: Potion[];
+    potions: Potion[];
     openModal: (potion: Potion) => void;
 }
 
-const Potions: React.FC<PotionsProps> = ({ potionsData, openModal }) => {
+const Potions: React.FC<PotionsProps> = ({ potions, openModal }) => {
     return (
         <div className="grid grid-cols-5 gap-4">
-            {potionsData.map((potion, index) => (
+            {potions.map((potion, index) => (
                 <div key={index} className="text-center p-4 rounded-lg">
                     <img src={potion.image} alt={`Potion ${potion.name}`} className="w-full h-auto mb-2" />
                     <p>{potion.name}</p>

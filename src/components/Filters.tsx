@@ -17,9 +17,8 @@ interface FilterProps {
 
 const Filters: React.FC<FilterProps> = ({ levelFilter, setLevelFilter, rarifyFilter, setRarityFilter, effectFilter, setEffectFilter, calculateCraftTime, craftTime }) => {
     return (
-        <div className="flex flex-start items-center border-white border-2 p-4">
+        <div className="flex flex-start items-center">
 
-            {/*/Level Requirement Filter */}
             <LevelFilter
                 levelFilter={levelFilter}
                 setLevelFilter={setLevelFilter}
