@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { Potion } from './types/Potion'
 import { potions } from './data/data'
-import { filterByLevelRequireMent } from './helpers/potionHelpers';
 import Modal from './components/Modal';
 import Potions from './components/Potions';
+import Filters from './components/Filters';
+import { filterByLevelRequireMent } from './helpers/potionHelpers';
 
 function App() {
   const [potionsData, setPotionsData] = useState<Potion[] | []>([]);
@@ -16,14 +17,21 @@ function App() {
     setPotionsData(potions)
   }, [])
 
+  // Filtrar por nivel
+  useEffect(() => {
+    setPotionsData(filterByLevelRequireMent(potions, levelFilter));
+  }, [levelFilter]);
+
+
   const openModal = (potion: Potion) => {
-    console.log(potion.name);
     setPotionModalVisible(true);
     setSelectedPotion(potion);
   };
 
   return (
     <>
+
+      <Filters levelFilter={levelFilter} setLevelFilter={setLevelFilter} />
 
       <Potions potionsData={potionsData} openModal={openModal} />
 

@@ -4,7 +4,7 @@ import { Potion } from "../types/Potion";
 
 //Filtrar las pociones que requieren un nivel de uso menor o igual al especificado
 export function filterByLevelRequireMent(potions: Potion[], level: number): Potion[] {
-    return potions.filter(potion => potion.usage.restrictions.levelRequirement <= level);
+    return potions.filter(potion => potion.usage.restrictions.levelRequirement >= level);
 }
 
 //Devuelve todas las pociones que tienen una rareza especifica
