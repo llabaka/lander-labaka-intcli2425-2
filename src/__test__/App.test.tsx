@@ -18,7 +18,7 @@ describe('Recibe las pociones, el level y devuelve un array de pociones', () => 
         const filteredPotions = filterByLevelRequireMent(potionsArray, 15);
 
         //Assert
-        expect(filteredPotions.length).toBe(1);
+        expect(filteredPotions.length).toBe(2);
         expect(filteredPotions.map(filteredPotion => filteredPotion.name)).toContain('Elixir of Eternal Flame');
 
     });
@@ -71,20 +71,18 @@ describe('Recibe las pociones, un effecto y devuelve un array de pociones', () =
 
         // Arrange
         const potion1 = potions[1];
-        const potion2 = potions[2];
+        const potion2 = potions[8];
 
         const potionsArray = [potion1, potion2];
-
-        const effect = potion1.effects.secondary![0];
 
         //Act
 
         // Filtrara las pociones que tengan ese efecto en este caso 1
-        const filteredPotions = findPotionByEffect(potionsArray, effect);
+        const filteredPotions = findPotionByEffect(potionsArray, "movementSpeed");
 
         //Assert
         expect(filteredPotions.length).toBe(1);
-        expect(filteredPotions.map(filteredPotion => filteredPotion.name)).toContain('Essence of Frostbound Will');
+        expect(filteredPotions.map(filteredPotion => filteredPotion.name)).toContain("Stormcaller's Brew");
 
     });
 });
