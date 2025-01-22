@@ -5,7 +5,7 @@ import { potions } from './data/data'
 import Modal from './components/Modal';
 import Potions from './components/Potions';
 import Filters from './components/Filters';
-import { filterByLevelRequireMent, findPotionByEffect, getPotionsByRarity } from './helpers/potionHelpers';
+import { calculateCraftintTime, filterByLevelRequireMent, findPotionByEffect, getPotionsByRarity } from './helpers/potionHelpers';
 
 function App() {
   const [potionModalVisible, setPotionModalVisible] = useState(false);
@@ -45,6 +45,11 @@ function App() {
     setSelectedPotion(potion);
   };
 
+  const calculateCraftTime = () => {
+    const totalCraftTime = calculateCraftintTime(showingPotions);
+    setCraftTime(totalCraftTime);
+  };
+
   return (
     <>
       <Filters
@@ -54,6 +59,8 @@ function App() {
         setRarityFilter={setRarityFilter}
         effectFilter={effectFilter}
         setEffectFilter={setEffectFilter}
+        craftTime={craftTime}
+        calculateCraftTime={calculateCraftTime}
       />
 
       <Potions
