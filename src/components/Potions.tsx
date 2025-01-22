@@ -8,7 +8,6 @@ interface PotionsProps {
     openModal: (potion: Potion) => void;
 }
 
-
 const Potions: React.FC<PotionsProps> = ({ potionsData, openModal }) => {
     return (
         <div className="grid grid-cols-5 gap-4">

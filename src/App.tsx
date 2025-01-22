@@ -5,28 +5,41 @@ import { potions } from './data/data'
 import Modal from './components/Modal';
 import Potions from './components/Potions';
 import Filters from './components/Filters';
-import { filterByLevelRequireMent, getPotionsByRarity } from './helpers/potionHelpers';
+import { filterByLevelRequireMent, findPotionByEffect, getPotionsByRarity } from './helpers/potionHelpers';
+import { Effect } from './types/Effect';
 
 function App() {
-  const [potionsData, setPotionsData] = useState<Potion[] | []>([]);
   const [potionModalVisible, setPotionModalVisible] = useState(false);
   const [selectedPotion, setSelectedPotion] = useState<Potion | null>(null);
   const [levelFilter, setLevelFilter] = useState(0);
   const [rarityFilter, setRarityFilter] = useState('');
+  const [effectFilter, setEffectFilter] = useState<Effect | null>(null);
+  const [craftTime, setCraftTime] = useState(0);
+  const [showingPotions, setShowingPotions] = useState<Potion[] | []>([]);
 
+  //Assign data
   useEffect(() => {
-    setPotionsData(potions)
-  }, [])
+    filterPotions();
+  }, [levelFilter, rarityFilter, effectFilter]);
 
-  // Filtrar por nivel
-  useEffect(() => {
-    setPotionsData(filterByLevelRequireMent(potions, levelFilter));
-  }, [levelFilter]);
+  async function filterPotions() {
 
-  // // Filtrar por rarity
-  // useEffect(() => {
-  //   setPotionsData(getPotionsByRarity(potions, rarityFilter));
-  // })
+    let filteredPotions = potions;
+
+    if (levelFilter > 0) {
+      filteredPotions = filterByLevelRequireMent(potions, levelFilter);
+    }
+
+    if (rarityFilter) {
+      filteredPotions = getPotionsByRarity(potions, rarityFilter);
+    }
+
+    if (effectFilter) {
+      filteredPotions = findPotionByEffect(potions, effectFilter);;
+    }
+
+    setShowingPotions(filteredPotions);
+  }
 
   const openModal = (potion: Potion) => {
     setPotionModalVisible(true);
@@ -36,9 +49,9 @@ function App() {
   return (
     <>
 
-      <Filters levelFilter={levelFilter} setLevelFilter={setLevelFilter} />
+      <Filters levelFilter={levelFilter} setLevelFilter={setLevelFilter} rarifyFilter={rarityFilter} setRarityFilter={setRarityFilter}/>
 
-      <Potions potionsData={potionsData} openModal={openModal} />
+      <Potions potionsData={showingPotions} openModal={openModal} />
 
       {potionModalVisible && selectedPotion && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">

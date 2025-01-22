@@ -7,7 +7,7 @@ interface LevelFitlerProps {
 
 const LevelFilter: React.FC<LevelFitlerProps> = ({ levelFilter, setLevelFilter }) => {
     return (
-        <div className="flex flex-col items-center border-white border-2 p-4">
+        <>
             <label className="text-lg">Level Requirement (0-100)</label>
             <input
                 type="range"
@@ -23,7 +23,7 @@ const LevelFilter: React.FC<LevelFitlerProps> = ({ levelFilter, setLevelFilter }
                 }}
             />
             <p className='text-3xl'>Level: {levelFilter}</p>
-        </div>
+        </>
     )
 }
 
