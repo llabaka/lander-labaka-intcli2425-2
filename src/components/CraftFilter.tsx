@@ -13,7 +13,7 @@ const CraftFilter: React.FC<CraftFilterProps> = ({ calculateCraftTime, craftTime
                 onClick={calculateCraftTime}
                 className="w-64 p-2 border border-gray-300 rounded"
             >
-                Click to calculate craft time
+                Calculate
             </button>
             <span className="ml-4 text-lg">{craftTime > 0 && `Total Craft Time: ${craftTime} minutes`}</span>
         </div>
