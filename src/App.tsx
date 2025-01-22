@@ -5,13 +5,14 @@ import { potions } from './data/data'
 import Modal from './components/Modal';
 import Potions from './components/Potions';
 import Filters from './components/Filters';
-import { filterByLevelRequireMent } from './helpers/potionHelpers';
+import { filterByLevelRequireMent, getPotionsByRarity } from './helpers/potionHelpers';
 
 function App() {
   const [potionsData, setPotionsData] = useState<Potion[] | []>([]);
   const [potionModalVisible, setPotionModalVisible] = useState(false);
   const [selectedPotion, setSelectedPotion] = useState<Potion | null>(null);
   const [levelFilter, setLevelFilter] = useState(0);
+  const [rarityFilter, setRarityFilter] = useState('');
 
   useEffect(() => {
     setPotionsData(potions)
@@ -22,6 +23,10 @@ function App() {
     setPotionsData(filterByLevelRequireMent(potions, levelFilter));
   }, [levelFilter]);
 
+  // // Filtrar por rarity
+  // useEffect(() => {
+  //   setPotionsData(getPotionsByRarity(potions, rarityFilter));
+  // })
 
   const openModal = (potion: Potion) => {
     setPotionModalVisible(true);
