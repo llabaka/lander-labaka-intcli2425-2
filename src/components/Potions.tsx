@@ -26,7 +26,6 @@ const Potions: React.FC<PotionsProps> = ({ potions, openModal }) => {
                     </button>
                 </div>
             ))}
-
         </div>
     )
 };

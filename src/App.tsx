@@ -69,12 +69,11 @@ function App() {
       />
 
       {potionModalVisible && selectedPotion && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <Modal
-            potion={selectedPotion}
-            setPotionModalVisible={setPotionModalVisible}
-          />
-        </div>
+        <Modal
+          potion={selectedPotion}
+          setPotionModalVisible={setPotionModalVisible}
+        />
+
       )}
     </>
   )
